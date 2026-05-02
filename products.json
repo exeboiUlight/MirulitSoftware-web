@@ -1,0 +1,20 @@
+[
+  {
+    "id": "blazebolt",
+    "name": "BlazeBolt",
+    "developer": "Mirulit Software",
+    "engine": "BlazeBolt",
+    "version": "1.0.0",
+    "description": "Мощный инструмент от Mirulit Software на движке BlazeBolt. Предоставляет высокую производительность и современные возможности для работы с проектами.",
+    "icon": "assets/icons/BlazeBolt.png",
+    "screenshots": [
+      "assets/screenshots/BlazeBolt-1.png",
+      "assets/screenshots/BlazeBolt-2.png",
+      "assets/screenshots/BlazeBolt-3.png"
+    ],
+    "downloadFile": "bins/Blazebolt installer.exe",
+    "fileSize": "55.4 MB",
+    "category": "Utilities",
+    "tags": ["blazebolt", "mirulit", "engine"]
+  }
+]
