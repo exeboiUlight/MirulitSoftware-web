@@ -17,26 +17,6 @@ function preloadAllImages(products) {
     });
 }
 
-function applyTilt(tile, e) {
-    const rect = tile.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
-    const cx = rect.width / 2;
-    const cy = rect.height / 2;
-
-    const rx = ((y - cy) / cy) * -10;
-    const ry = ((x - cx) / cx) * 10;
-    const z = 18 * (1 - (Math.abs(x - cx) / cx + Math.abs(y - cy) / cy) / 2);
-
-    tile.style.transform = `perspective(1000px) rotateX(${rx}deg) rotateY(${ry}deg) translateZ(${z}px)`;
-}
-
-function resetTilt(tile) {
-    tile.style.transition = 'transform 0.4s ease';
-    tile.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) translateZ(0)';
-    setTimeout(() => { tile.style.transition = 'transform 0.1s ease, box-shadow 0.3s ease'; }, 400);
-}
-
 function openModal(product) {
     const overlay = document.getElementById('modal-overlay');
     const modal = overlay.querySelector('.modal');
@@ -47,7 +27,7 @@ function openModal(product) {
                 <img src="${s}" alt="Screenshot" loading="lazy" onerror="this.parentElement.style.display='none'">
             </div>
         `).join('')
-        : '<p style="color:#666">Скриншоты отсутствуют</p>';
+        : '<p style="color:#6e7681">Скриншоты отсутствуют</p>';
 
     modal.innerHTML = `
         <button class="modal-close" onclick="closeModal()">&times;</button>
@@ -58,7 +38,7 @@ function openModal(product) {
             <div class="modal-info">
                 <h2>${product.name}</h2>
                 <span class="product-engine">${product.engine}</span>
-                <div style="color:#888;font-size:13px;margin-top:4px;">${product.developer || ''} · v${product.version || '1.0.0'}</div>
+                <div class="modal-dev">${product.developer || ''} · v${product.version || '1.0.0'}</div>
             </div>
         </div>
         <div class="modal-description">${product.description}</div>
@@ -184,8 +164,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 const product = products.find(p => p.id === id);
                 if (product) openModal(product);
             });
-            tile.addEventListener('mousemove', e => applyTilt(tile, e));
-            tile.addEventListener('mouseleave', () => resetTilt(tile));
 
             tile.querySelectorAll('.screenshot').forEach(el => {
                 el.addEventListener('click', e => {
